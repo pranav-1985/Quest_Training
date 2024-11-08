@@ -2,7 +2,7 @@ package com.quest.practice_vars;
 
 import java.util.Scanner;
 
-public class fibonnaciSeries {
+public class FibonnaciSeries {
     public static void main(String[] args) {
         int number;
         Scanner sc = new Scanner(System.in);
