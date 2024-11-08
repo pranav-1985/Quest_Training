@@ -5,13 +5,14 @@ import java.util.Scanner;
 import static java.lang.System.exit;
 
 public class SimpleCalculator {
+    static boolean again = true;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the starting number: ");
         int result = sc.nextInt();
-        boolean again = true;
+
         while (again) {
-            System.out.println("\ncurrent result is: " + result);
             Scanner sc1 = new Scanner(System.in);
             System.out.println("\nEnter option:\n " +
                     "1. Addition\n" +
@@ -28,32 +29,49 @@ public class SimpleCalculator {
                 case 1:
                     Scanner sc2 = new Scanner(System.in);
                     System.out.println("Enter the number to add: ");
-                    int addnum = sc2.nextInt();
-                    result = result + addnum;
+                    int addNum = sc2.nextInt();
+                    result = result + addNum;
+                    System.out.println("\ncurrent result is: " + result);
+                    doAgain();
                     break;
                 case 2:
                     Scanner sc3 = new Scanner(System.in);
                     System.out.println("Enter the number to subtract: ");
-                    int subnum = sc3.nextInt();
-                    result = result - subnum;
+                    int subNum = sc3.nextInt();
+                    result = result - subNum;
+                    System.out.println("\ncurrent result is: " + result);
+                    doAgain();
                     break;
                 case 3:
                     Scanner sc4 = new Scanner(System.in);
                     System.out.println("Enter the number to multiply: ");
-                    int mulnum = sc4.nextInt();
-                    result = result * mulnum;
+                    int mulNum = sc4.nextInt();
+                    result = result * mulNum;
+                    System.out.println("\ncurrent result is: " + result);
+                    doAgain();
                     break;
                 case 4:
                     Scanner sc5 = new Scanner(System.in);
                     System.out.println("Enter the number to divide: ");
-                    int divnum = sc5.nextInt();
-                    result = result / divnum;
+                    int divNum = sc5.nextInt();
+                    if (divNum == 0) {
+                        System.out.println("Division by zero is not possible. try again");
+                        doAgain();
+                        break;
+                    }
+                    result = result / divNum;
+                    System.out.println("\ncurrent result is: " + result);
+                    doAgain();
                     break;
                 case 5:
                     result = (int) Math.sqrt(result);
+                    System.out.println("\ncurrent result is: " + result);
+                    doAgain();
                     break;
                 case 6:
                     result = 0;
+                    System.out.println("\ncurrent result is: " + result);
+                    doAgain();
                     break;
                 case 7:
                     again = false;
@@ -64,5 +82,21 @@ public class SimpleCalculator {
 
             }
         }
+    }
+
+    private static void doAgain() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to continue? (Y/N)");
+        String yesorno = sc.nextLine();
+        if (yesorno == "n" || yesorno == "N") {
+            again = false;
+        } else if (yesorno == "y" || yesorno == "Y") {
+            again = true;
+        } else {
+            System.out.println("Invalid option");
+            doAgain();
+        }
+        return;
+
     }
 }
