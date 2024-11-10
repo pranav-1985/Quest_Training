@@ -19,35 +19,14 @@ public class StudentMarks {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the number of students : ");
-        int numOfStudent = sc.nextInt();
-        while (!isValidScore(numOfStudent)) {
-            System.out.println("Invalid number of students, try again");
-            numOfStudent = sc.nextInt();
-        }
+        int numOfStudent = isValidNumber(sc, "Enter the number of students : ");
         for (int i = 1; i <= numOfStudent; i++) {
             Scanner sc1 = new Scanner(System.in);
             System.out.println("Enter the name of student" + i + ": ");
             String name = sc1.nextLine();
-            System.out.println("Enter the Math marks : ");
-            int mathMark = sc1.nextInt();
-            while (!isValidScore(mathMark)) {
-                System.out.println("Invalid score, enter again");
-                mathMark = sc1.nextInt();
-            }
-            System.out.println("Enter the english marks : ");
-            int englishMark = sc1.nextInt();
-            while (!isValidScore(englishMark)) {
-                System.out.println("Invalid score, enter again");
-                englishMark = sc1.nextInt();
-            }
-            System.out.println("Enter the science marks : ");
-            int scienceMark = sc1.nextInt();
-            while (!isValidScore(scienceMark)) {
-                System.out.println("Invalid score, enter again");
-                scienceMark = sc1.nextInt();
-            }
-
+            int mathMark = isValidNumber(sc1, "Enter the Math marks : ");
+            int englishMark = isValidNumber(sc1, "Enter the english marks : ");
+            int scienceMark = isValidNumber(sc1, "Enter the science marks : ");
             Student newStudent = new Student();
             newStudent.name = name;
             newStudent.mathMarks = mathMark;
@@ -82,7 +61,20 @@ public class StudentMarks {
         System.out.println("Summary: " + numOfStudent + " students Processed");
     }
 
-    public static boolean isValidScore(int score) {
-        return score >= 0 && score <= MAX_SCORE;
+    public static int isValidNumber(Scanner sc, String prompt) {
+        int number = -1;
+        while (number <= 0) {
+            System.out.println(prompt);
+            try {
+                number = sc.nextInt();
+                if (number <= 0) {
+                    System.out.println("Invalid number, try again");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input , try again");
+                sc.next();
+            }
+        }
+        return number;
     }
 }
