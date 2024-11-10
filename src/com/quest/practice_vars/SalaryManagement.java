@@ -55,17 +55,7 @@ public class SalaryManagement {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("\nEnter the number of the employees : ");
-        int numOfEmployees;
-        try {
-            numOfEmployees = sc.nextInt();
-            if (numOfEmployees <= 0) {
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            System.out.println("invalid input, try again");
-            numOfEmployees = sc.nextInt();
-        }
+        int numOfEmployees = isValidNumber(sc, "\nEnter the number of the employees : ");
         Employee[] employee = new Employee[numOfEmployees];//object array creation
         //data input
         for (int i = 0; i < numOfEmployees; i++) {
@@ -76,40 +66,11 @@ public class SalaryManagement {
                 System.out.println("Invalid name, try again");
                 name = sc1.nextLine();
             } //checking if name is valid
-            System.out.println("Enter the salary of employee " + (i + 1) + " : ");
-            int salary;
-            try {
-                salary = sc1.nextInt();
-                if (salary <= 0) {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
-                System.out.println("Invalid salary, try again");
-                salary = sc.nextInt();
-            }//handling double and negative inputs
-            System.out.println("Enter the bonus of employee " + (i + 1) + " : ");
-            int bonus;
-            try {
-                bonus = sc.nextInt();
-                if (bonus < 0) {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
-                System.out.println("Invalid bonus, try again");
-                bonus = sc.nextInt();
-            }//handling double and negative inputs
-            System.out.println("Enter the duration of employee " + (i + 1) + " : ");
-            int duration;
-            try {
-                duration = sc.nextInt();
-                if (duration < 0) {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
-                System.out.println("Invalid duration, try again");
-                duration = sc.nextInt();
-            }//handling double and negative inputs
-            employee[i] = new Employee(name, salary, bonus, duration);//creating object and placing in object array
+            int salary = isValidNumber(sc1, "\nEnter the salary of employee " + (i + 1) + " : ");
+            int bonus = isValidNumber(sc1, "\nEnter the bonus of employee " + (i + 1) + " : ");
+            int duration = isValidNumber(sc1, "\nEnter the duration of employee " + (i + 1) + " : ");
+            //creating object and placing in object array
+            employee[i] = new Employee(name, salary, bonus, duration);
         }
 
         //for printing report
@@ -133,6 +94,23 @@ public class SalaryManagement {
     //checking if name is a string or not
     public static boolean isValidName(String name) {
         return name.matches("[a-zA-Z ]+");
+    }
+
+    public static int isValidNumber(Scanner sc, String prompt) {
+        int number = -1;
+        while (number <= 0) {
+            System.out.println(prompt);
+            try {
+                number = sc.nextInt();
+                if (number <= 0) {
+                    System.out.println("Invalid number, try again");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input , try again");
+                sc.next();
+            }
+        }
+        return number;
     }
 
 }
