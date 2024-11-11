@@ -52,6 +52,29 @@ public class SalaryManagement {
 
     static int averageTotalSalary;
 
+    //checking if name is a string or not
+    public static boolean isValidName(String name) {
+        return name.matches("[a-zA-Z ]+");
+    }
+
+    //checking if number is a positive integer
+    public static int isValidNumber(Scanner sc, String prompt) {
+        int number = -1;
+        while (number <= 0) {
+            System.out.println(prompt);
+            try {
+                number = sc.nextInt();
+                if (number <= 0) {
+                    System.out.println("Invalid number, try again");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input , try again");
+                sc.next();
+            }
+        }
+        return number;
+    }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -62,10 +85,12 @@ public class SalaryManagement {
             Scanner sc1 = new Scanner(System.in);
             System.out.println("\n\nEnter the name of employee " + (i + 1) + " : ");
             String name = sc1.nextLine();
+            //checking if name is valid
             while (!isValidName(name)) {
                 System.out.println("Invalid name, try again");
                 name = sc1.nextLine();
-            } //checking if name is valid
+            }
+            //other inputs and validation
             int salary = isValidNumber(sc1, "\nEnter the salary of employee " + (i + 1) + " : ");
             int bonus = isValidNumber(sc1, "\nEnter the bonus of employee " + (i + 1) + " : ");
             int duration = isValidNumber(sc1, "\nEnter the duration of employee " + (i + 1) + " : ");
@@ -90,27 +115,4 @@ public class SalaryManagement {
         System.out.println("\nAverage Salary for all employees: " + averageTotalSalary);
         System.out.println("\nThank you for using the Employee Salary Management System.");
     }
-
-    //checking if name is a string or not
-    public static boolean isValidName(String name) {
-        return name.matches("[a-zA-Z ]+");
-    }
-
-    public static int isValidNumber(Scanner sc, String prompt) {
-        int number = -1;
-        while (number <= 0) {
-            System.out.println(prompt);
-            try {
-                number = sc.nextInt();
-                if (number <= 0) {
-                    System.out.println("Invalid number, try again");
-                }
-            } catch (Exception e) {
-                System.out.println("Invalid input , try again");
-                sc.next();
-            }
-        }
-        return number;
-    }
-
 }
