@@ -66,6 +66,11 @@ public class WarehouseInventory {
 
     public static void ProductData(Scanner sc, int numOfNewProducts, ArrayList<Product> products) {
 
+        if (numOfNewProducts == 0) {
+            System.out.println("Please enter a valid number of products (greater than 0).");
+            return;
+        }
+
         System.out.println("--Enter products, their price, and quantity--");
         for (int i = 0; i < numOfNewProducts; i++) {
             System.out.println("\nEnter the name of Product " + (products.size() + 1) + " : ");
@@ -156,6 +161,12 @@ public class WarehouseInventory {
     }
 
     public static void DetectStockOut(ArrayList<Product> products) {
+
+        if (products.isEmpty()) {
+            System.out.println("No products in the inventory.");
+            return;
+        }
+
         System.out.println("\nOut of Stock Products:");
 
         boolean stockOutFound = false;
