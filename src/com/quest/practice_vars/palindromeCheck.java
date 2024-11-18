@@ -7,10 +7,12 @@ public class PalindromeCheck {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a string: ");
         String s = sc.nextLine();
+
         if (s == null) {
             System.out.println("Empty string");
             return;
         }
+
         StringBuilder sb = new StringBuilder(s);
         StringBuilder reverse = sb.reverse();
         String reversedString = reverse.toString();

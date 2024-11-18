@@ -1,6 +1,6 @@
 package com.quest.practice_vars;
 
-/*
+/*documentation type
  ***  * */
 public class WrapperExamples {
     /*

@@ -45,11 +45,12 @@ public class PracticeOperators {
         System.out.println(z);
 
 
-        int p = 10;
+        int p = 17;
         int q = 5;
         //ternary operators
         int result = p > 15 ? q++ : 0;
         System.out.println(result);
+        System.out.println(q);
     }
 }
 
