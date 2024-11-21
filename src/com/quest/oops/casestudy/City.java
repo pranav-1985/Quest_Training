@@ -48,10 +48,10 @@ public class City {
 
     @Override
     public String toString() {
-        return "City: " + cityName + "\n" +
-                "Temperature: " + temp + "°C\n" +
-                "Humidity: " + humidity + "%\n" +
-                "Weather Condition: " + weatherCondition + "\n";
+        return String.format("City: %s%n" +
+                        "Temperature: %f °C%n" +
+                        "Humidity: %d%%%n" +
+                        "Weather Condition: %s%n",
+                cityName, temp, humidity, weatherCondition);
     }
-
 }
