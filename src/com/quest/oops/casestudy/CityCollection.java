@@ -40,6 +40,7 @@ public class CityCollection extends WeatherOperations {
             System.out.println("Temperature: " + city.getTemp() + "°C");
             System.out.println("Humidity: " + city.getHumidity() + "%");
             System.out.println("Weather Condition: " + city.getWeatherCondition());
+            System.out.println("--------------------------------------");
         }
         System.out.println("--------------------------------------");
     }
