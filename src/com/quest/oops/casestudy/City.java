@@ -7,12 +7,15 @@ public class City {
     private int humidity;
     private String weatherCondition;
 
+    //constructor
     public City(String cityName, double temp, int humidity, String weatherCondition) {
         this.cityName = cityName;
         this.temp = temp;
         this.humidity = humidity;
         this.weatherCondition = weatherCondition;
     }
+
+    //getters and setters for every variables
 
     public String getCityName() {
         return cityName;
@@ -46,6 +49,8 @@ public class City {
         this.weatherCondition = weatherCondition;
     }
 
+
+    //tostring() overriding to print data according to need
     @Override
     public String toString() {
         return String.format("City: %s%n" +

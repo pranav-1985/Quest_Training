@@ -36,7 +36,7 @@ public class Main {
                     System.out.print("Enter weather condition: ");
                     String weatherCondition = sc.nextLine();
 
-                    cityCollection.addCity(cityName, temp, humidity, weatherCondition);
+                    cityCollection.addCity(cityName, temp, humidity, weatherCondition);//calling add object method
                     break;
 
                 case 2: // Display Single City

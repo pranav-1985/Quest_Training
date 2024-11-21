@@ -4,14 +4,16 @@ import java.util.Scanner;
 
 public class CityCollection extends WeatherOperations {
 
-    private City[] CityList;
-    private int currentIndex;
+    private City[] CityList; //array to hold city objects
+    private int currentIndex;   //index for array
 
     public CityCollection(int numOfCity) {
         CityList = new City[numOfCity];
         currentIndex = 0;
     }
 
+
+    //method to add city object to array
     @Override
     public void addCity(String cityName, double temp, int humidity, String weatherCondition) {
         if (currentIndex < CityList.length) {
@@ -22,6 +24,7 @@ public class CityCollection extends WeatherOperations {
         }
     }
 
+    //display single city based on name
     @Override
     public void displaySingleCity(String cityName) {
         City city = findCityByName(cityName);
@@ -32,6 +35,7 @@ public class CityCollection extends WeatherOperations {
         }
     }
 
+    //display every city
     @Override
     public void displayAllCities() {
         System.out.println("--------------------------------------");
@@ -45,6 +49,7 @@ public class CityCollection extends WeatherOperations {
         System.out.println("--------------------------------------");
     }
 
+    //update city details based on name
     @Override
     public void updateCityDetails(String cityName) {
 
@@ -79,6 +84,7 @@ public class CityCollection extends WeatherOperations {
         }
     }
 
+    //method to identify city with highest and lowest temp
     @Override
     public void hightempLowtemp() {
         System.out.println("city with highest temperature:\n");
@@ -90,6 +96,7 @@ public class CityCollection extends WeatherOperations {
         System.out.println(city.toString());
     }
 
+    //method to identify city with higher threshold
     @Override
     public void humidtyMorethan(int humidity) {
         boolean isfound = false;
@@ -104,6 +111,7 @@ public class CityCollection extends WeatherOperations {
         }
     }
 
+    //method to print group of cities based on condition
     @Override
     public void groupCityOnCondition(String weatherCondition) {
         boolean isFound = false;
@@ -119,6 +127,7 @@ public class CityCollection extends WeatherOperations {
         }
     }
 
+    //calculating average temperature across every city
     @Override
     public void calculateAvgTemperature() {
         int avgTEmp = 0;
@@ -129,6 +138,7 @@ public class CityCollection extends WeatherOperations {
         System.out.println("average temperature across all cities: " + avgTEmp);
     }
 
+    //to issue temp warning to city with a temp higher
     @Override
     public void tempWarning(double temp) {
         boolean isFound = false;
@@ -143,6 +153,7 @@ public class CityCollection extends WeatherOperations {
         }
     }
 
+    //to find city with low humidity
     @Override
     public void humidityDrop(int humidity) {
         boolean isFound = false;
@@ -156,6 +167,9 @@ public class CityCollection extends WeatherOperations {
             System.out.println("No cities found with humidity below " + humidity + "%.");
         }
     }
+
+
+    //helper methods
 
     public City findCityByName(String cityName) {
         for (City city : CityList) {

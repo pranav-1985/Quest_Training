@@ -2,6 +2,7 @@ package com.quest.oops.casestudy;
 
 public abstract class WeatherOperations {
 
+    // all the absrtact methods are defined here and implemented in CityCollection
     public abstract void addCity(String cityName, double temp, int humidity, String weatherCondition);
 
     public abstract void displaySingleCity(String cityName);
