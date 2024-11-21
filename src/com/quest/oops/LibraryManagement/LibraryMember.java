@@ -12,7 +12,7 @@ public class LibraryMember {
         this.memberId = memberId;
         this.name = name;
         this.contactInfo = contactInfo;
-        this.borrowedBooks = new String[10];  // Max 10 books per member
+        this.borrowedBooks = new String[10];
         this.borrowedCount = 0;
     }
 

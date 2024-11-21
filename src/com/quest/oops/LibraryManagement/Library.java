@@ -1,6 +1,6 @@
 package com.quest.oops.LibraryManagement;
 
-public class Library extends LibraryOperations {
+public class Library extends LibraryFunctions {
 
     private Book[] books;
     private LibraryMember[] members;
@@ -44,10 +44,10 @@ public class Library extends LibraryOperations {
         for (int i = 0; i < bookCount; i++) {
             Book book = books[i];
             if (book.getIsbn().equals(isbn)) {
-                return book;  // Book found, return it
+                return book;
             }
         }
-        return null;  // Book not found
+        return null;
     }
 
 
@@ -63,7 +63,7 @@ public class Library extends LibraryOperations {
         }
     }
 
-    // Implement borrowBook from LibraryOperations
+    
     @Override
     public boolean borrowBook(String isbn, LibraryMember member) {
         Book book = searchBook(isbn);
@@ -83,8 +83,8 @@ public class Library extends LibraryOperations {
     public boolean returnBook(String isbn, LibraryMember member) {
         Book book = searchBook(isbn);
         if (book != null && !book.isAvailable()) {
-            book.setAvailable(true);  // Mark book as available
-            member.returnBook(isbn);  // Remove book from member's borrowed list
+            book.setAvailable(true);
+            member.returnBook(isbn);
             System.out.println("Book returned successfully.");
             return true;
         } else {
@@ -105,7 +105,7 @@ public class Library extends LibraryOperations {
     public LibraryMember[] getMembers() {
         return members;
     }
-    
+
     public int getMemberCount() {
         return memberCount;
     }

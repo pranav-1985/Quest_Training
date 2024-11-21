@@ -1,6 +1,6 @@
 package com.quest.oops.LibraryManagement;
 
-public abstract class LibraryOperations {
+public abstract class LibraryFunctions {
 
     public abstract void addBook(Book book);
 
