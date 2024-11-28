@@ -13,7 +13,7 @@ public class CallHistory {
     }
 
     public String getTypeOfCall() {
-        return typeOfCall;
+        return this.typeOfCall;
     }
 
     public void setTypeOfCall(String typeOfCall) {
@@ -24,7 +24,7 @@ public class CallHistory {
     }
 
     public double getDuration() {
-        return duration;
+        return this.duration;
     }
 
     public void setDuration(double duration) {
@@ -35,7 +35,7 @@ public class CallHistory {
     }
 
     public String getTimeStamp() {
-        return timeStamp;
+        return this.timeStamp;
     }
 
     public void setTimeStamp(String timeStamp) {

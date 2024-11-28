@@ -116,7 +116,7 @@ public class TelecomSystem implements ManageTSMS {
                             continue;
                     }
 
-                    totalBill += (rate * callRecord.getDuration());
+                    totalBill = totalBill + (rate * callRecord.getDuration());
                 }
 
                 System.out.printf("Bill for subscriber %s (ID: %d): %.2f\n",

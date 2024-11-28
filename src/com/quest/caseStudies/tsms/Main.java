@@ -42,9 +42,7 @@ public class Main {
                         double balance = scanner.nextInt();
                         Subscriber subscriber = new Subscriber(subscriberID, name, phoneNumber, plan, balance);
                         tsmsManager.addSubscriber(subscriber);
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("invalid input try again");
-                    } catch (InputMismatchException e) {
+                    } catch (IllegalArgumentException | InputMismatchException e) {
                         System.out.println("invalid input try again");
                     }
                     break;
@@ -57,13 +55,12 @@ public class Main {
                         String type = scanner.nextLine();
                         System.out.println("Enter the Duration in minutes");
                         double duration = scanner.nextDouble();
+                        scanner.nextLine();
                         System.out.println("enter The timestamp");
                         String timestamp = scanner.nextLine();
                         CallHistory history = new CallHistory(type, duration, timestamp);
 
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("invalid input try again");
-                    } catch (InputMismatchException e) {
+                    } catch (IllegalArgumentException | InputMismatchException e) {
                         System.out.println("invalid input try again");
                     }
                     break;
@@ -73,9 +70,7 @@ public class Main {
                         int subscriberID = scanner.nextInt();
                         scanner.nextLine();
                         tsmsManager.getSubscriber(subscriberID);
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("invalid input try again");
-                    } catch (InputMismatchException e) {
+                    } catch (IllegalArgumentException | InputMismatchException e) {
                         System.out.println("invalid input try again");
                     }
                     break;
@@ -85,9 +80,7 @@ public class Main {
                         int sID = scanner.nextInt();
                         scanner.nextLine();
                         tsmsManager.getCallHistory(sID);
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("invalid input try again");
-                    } catch (InputMismatchException e) {
+                    } catch (IllegalArgumentException | InputMismatchException e) {
                         System.out.println("invalid input try again");
                     }
                     break;
@@ -106,6 +99,7 @@ public class Main {
                     break;
                 default:
                     System.out.println("Invalid choice, please try again.");
+                    break;
             }
         }
         scanner.close();

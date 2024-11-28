@@ -22,7 +22,7 @@ public class Subscriber {
     }
 
     public int getSubscriberId() {
-        return SubscriberId;
+        return this.SubscriberId;
     }
 
     public void setSubscriberId(int SubscriberId) {
@@ -33,7 +33,7 @@ public class Subscriber {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -44,7 +44,7 @@ public class Subscriber {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -55,7 +55,7 @@ public class Subscriber {
     }
 
     public String getPlan() {
-        return plan;
+        return this.plan;
     }
 
     public void setPlan(String plan) {
@@ -66,7 +66,7 @@ public class Subscriber {
     }
 
     public double getBalance() {
-        return balance;
+        return this.balance;
     }
 
     public void setBalance(double balance) {
