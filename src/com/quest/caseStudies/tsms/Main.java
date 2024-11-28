@@ -59,6 +59,7 @@ public class Main {
                         System.out.println("enter The timestamp");
                         String timestamp = scanner.nextLine();
                         CallHistory history = new CallHistory(type, duration, timestamp);
+                        tsmsManager.addCallRecord(subscriberID, history);
 
                     } catch (IllegalArgumentException | InputMismatchException e) {
                         System.out.println("invalid input try again");
