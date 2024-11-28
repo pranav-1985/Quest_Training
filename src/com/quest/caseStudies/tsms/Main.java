@@ -1,5 +1,7 @@
 package com.quest.caseStudies.tsms;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -58,9 +60,14 @@ public class Main {
                         System.out.println("Enter the Duration in minutes");
                         double duration = scanner.nextDouble();
                         scanner.nextLine();
-                        System.out.println("enter The timestamp");
-                        String timestamp = scanner.nextLine();
-                        CallHistory history = new CallHistory(type, duration, timestamp);
+                        System.out.println("Enter the timestamp (format: yyyy-MM-dd HH:mm)");
+                        String dateTimeInput = scanner.nextLine();
+
+                        // Parse the input string to LocalDateTime
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        LocalDateTime timeStamp = LocalDateTime.parse(dateTimeInput, formatter);
+
+                        CallHistory history = new CallHistory(type, duration, timeStamp);
                         tsmsManager.addCallRecord(subscriberID, history);
 
                     } catch (IllegalArgumentException | InputMismatchException e) {

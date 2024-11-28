@@ -2,13 +2,14 @@ package com.quest.caseStudies.tsms;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class CallHistory implements Serializable {
     private CallType typeOfCall;
     private Double duration;
-    private String timeStamp;
+    private LocalDateTime timeStamp;
 
-    public CallHistory(String typeOfCall, double duration, String timeStamp) {
+    public CallHistory(String typeOfCall, double duration, LocalDateTime timeStamp) {
         setTypeOfCall(typeOfCall);
         setDuration(duration);
         setTimeStamp(timeStamp);
@@ -33,11 +34,11 @@ public class CallHistory implements Serializable {
         this.duration = duration;
     }
 
-    public String getTimeStamp() {
+    public LocalDateTime getTimeStamp() {
         return this.timeStamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
+    public void setTimeStamp(LocalDateTime timeStamp) {
         if (timeStamp == null) {
             throw new IllegalArgumentException("Timestamp cannot be null");
         }
