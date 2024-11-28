@@ -43,6 +43,7 @@ public class Main {
                         Subscriber subscriber = new Subscriber(subscriberID, name, phoneNumber, plan, balance);
                         tsmsManager.addSubscriber(subscriber);
                     } catch (IllegalArgumentException | InputMismatchException e) {
+                        System.out.println(e.getMessage());
                         System.out.println("invalid input try again");
                     }
                     break;
@@ -62,6 +63,7 @@ public class Main {
                         tsmsManager.addCallRecord(subscriberID, history);
 
                     } catch (IllegalArgumentException | InputMismatchException e) {
+                        System.out.println(e.getMessage());
                         System.out.println("invalid input try again");
                     }
                     break;
@@ -72,6 +74,7 @@ public class Main {
                         scanner.nextLine();
                         tsmsManager.getSubscriber(subscriberID);
                     } catch (IllegalArgumentException | InputMismatchException e) {
+                        System.out.println(e.getMessage());
                         System.out.println("invalid input try again");
                     }
                     break;
@@ -82,6 +85,7 @@ public class Main {
                         scanner.nextLine();
                         tsmsManager.getCallHistory(sID);
                     } catch (IllegalArgumentException | InputMismatchException e) {
+                        System.out.println(e.getMessage());
                         System.out.println("invalid input try again");
                     }
                     break;
