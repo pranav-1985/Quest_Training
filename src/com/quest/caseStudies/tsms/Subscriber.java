@@ -1,18 +1,19 @@
 package com.quest.caseStudies.tsms;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Subscriber {
+public class Subscriber implements Serializable {
 
-    private int SubscriberId;
+    private int subscriberId;
     private String name;
     private String phoneNumber;
     private String plan;
     private double balance;
     private ArrayList<CallHistory> callRecords;
 
-    public Subscriber(int SubscriberId, String name, String phoneNumber, String plan, double balance) {
-        setSubscriberId(SubscriberId);
+    public Subscriber(int subscriberId, String name, String phoneNumber, String plan, double balance) {
+        setSubscriberId(subscriberId);
         setName(name);
         setPhoneNumber(phoneNumber);
         setPlan(plan);
@@ -22,14 +23,14 @@ public class Subscriber {
     }
 
     public int getSubscriberId() {
-        return this.SubscriberId;
+        return this.subscriberId;
     }
 
     public void setSubscriberId(int SubscriberId) {
         if (SubscriberId <= 0) {
             throw new IllegalArgumentException("Subscriber ID must be a positive number.");
         }
-        this.SubscriberId = SubscriberId;
+        this.subscriberId = SubscriberId;
     }
 
     public String getName() {
@@ -84,7 +85,7 @@ public class Subscriber {
         if (callRecords == null) {
             throw new IllegalArgumentException("Call records list cannot be null.");
         }
-        this.callRecords = new ArrayList<>(callRecords); // Store a copy for encapsulation
+        this.callRecords = new ArrayList<>(callRecords);
     }
 
     public void addCallRecordDetails(CallHistory callRecord) {
@@ -98,7 +99,7 @@ public class Subscriber {
     public String toString() {
         return String.format(
                 "Subscriber [Id: %d, Name: %s, Phone Number: %s, Plan: %s, Balance: %.2f, Call Records Count: %d]",
-                SubscriberId, name, phoneNumber, plan, balance, callRecords.size()
+                subscriberId, name, phoneNumber, plan, balance, callRecords.size()
         );
     }
 }

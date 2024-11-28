@@ -1,8 +1,10 @@
 package com.quest.caseStudies.tsms;
 
 
-public class CallHistory {
-    private String typeOfCall;
+import java.io.Serializable;
+
+public class CallHistory implements Serializable {
+    private CallType typeOfCall;
     private Double duration;
     private String timeStamp;
 
@@ -12,15 +14,12 @@ public class CallHistory {
         setTimeStamp(timeStamp);
     }
 
-    public String getTypeOfCall() {
+    public CallType getTypeOfCall() {
         return this.typeOfCall;
     }
 
     public void setTypeOfCall(String typeOfCall) {
-        if (typeOfCall == null || !(typeOfCall.equalsIgnoreCase("Local") || typeOfCall.equalsIgnoreCase("ISD") || typeOfCall.equalsIgnoreCase("STD"))) {
-            throw new IllegalArgumentException("Type of call must be either 'STD','Local' or 'ISD'.");
-        }
-        this.typeOfCall = typeOfCall;
+        this.typeOfCall = CallType.fromString(typeOfCall);
     }
 
     public double getDuration() {

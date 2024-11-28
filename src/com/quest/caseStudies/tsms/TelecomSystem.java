@@ -1,8 +1,9 @@
 package com.quest.caseStudies.tsms;
 
+import java.io.*;
 import java.util.ArrayList;
 
-public class TelecomSystem implements ManageTSMS {
+public class TelecomSystem implements ManageTSMS, Serializable {
 
     private ArrayList<Subscriber> subscribers;
 
@@ -30,7 +31,7 @@ public class TelecomSystem implements ManageTSMS {
         if (callRecord == null) {
             throw new IllegalArgumentException("Call history cannot be null");
         }
-        if (subscriberId <= 0 || subscriberId >= subscribers.size()) {
+        if (subscriberId <= 0) {
             throw new IllegalArgumentException("Invalid subscriber ID");
         }
         Subscriber subscriber = findSubscriber(subscriberId);
@@ -45,7 +46,7 @@ public class TelecomSystem implements ManageTSMS {
 
     @Override
     public void getSubscriber(int subscriberId) {
-        if (subscriberId <= 0 || subscriberId >= subscribers.size()) {
+        if (subscriberId <= 0) {
             throw new IllegalArgumentException("Invalid subscriber ID");
         }
         Subscriber subscriber = findSubscriber(subscriberId);
@@ -98,23 +99,9 @@ public class TelecomSystem implements ManageTSMS {
                 double totalBill = 0;
 
                 for (CallHistory callRecord : subscriber.getCallRecords()) {
-                    String typeOfCall = callRecord.getTypeOfCall().toLowerCase();
-                    double rate = 0;
-
-                    switch (typeOfCall) {
-                        case "local":
-                            rate = 1;
-                            break;
-                        case "std":
-                            rate = 2;
-                            break;
-                        case "isd":
-                            rate = 5;
-                            break;
-                        default:
-                            System.out.println("Unknown call type: " + typeOfCall);
-                            continue;
-                    }
+                    // Get the call type from CallHistory and use the getRate() method
+                    CallType callType = callRecord.getTypeOfCall();
+                    double rate = callType.getRate();
 
                     totalBill = totalBill + (rate * callRecord.getDuration());
                 }
@@ -129,15 +116,24 @@ public class TelecomSystem implements ManageTSMS {
         }
     }
 
-
     @Override
     public void saveDataToFile(String filename) {
-        System.out.println("Saving data to file");
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(subscribers); // Write the subscribers list to the file
+            System.out.println("Data saved to file.");
+        } catch (IOException e) {
+            System.out.println("Error saving data to file: " + e.getMessage());
+        }
     }
 
     @Override
     public void loadDataFromFile(String filename) {
-        System.out.println("Loading data from file");
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            subscribers = (ArrayList<Subscriber>) ois.readObject(); // Read the subscribers list from the file
+            System.out.println("Data loaded from file.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error loading data from file: " + e.getMessage());
+        }
     }
 
     //helper method
