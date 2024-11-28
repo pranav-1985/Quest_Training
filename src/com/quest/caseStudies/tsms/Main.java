@@ -63,7 +63,6 @@ public class Main {
 
                         System.out.println("Enter the timestamp (format: yyyy-MM-dd HH:mm)");
                         String dateTimeInput = scanner.nextLine();
-
                         // Parse the input string to LocalDateTime
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                         LocalDateTime timeStamp = LocalDateTime.parse(dateTimeInput, formatter);
