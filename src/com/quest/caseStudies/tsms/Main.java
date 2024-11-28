@@ -60,6 +60,7 @@ public class Main {
                         System.out.println("Enter the Duration in minutes");
                         double duration = scanner.nextDouble();
                         scanner.nextLine();
+
                         System.out.println("Enter the timestamp (format: yyyy-MM-dd HH:mm)");
                         String dateTimeInput = scanner.nextLine();
 
