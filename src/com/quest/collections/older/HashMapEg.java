@@ -1,7 +1,6 @@
-package com.quest.collections;
+package com.quest.collections.older;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class HashMapEg {
     public static void main(String[] args) {

@@ -1,7 +1,5 @@
 package com.quest.caseStudies.tsms;
 
-import java.util.List;
-
 public interface ManageTSMS {
 
     void addSubscriber(Subscriber subscriber);

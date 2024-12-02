@@ -1,4 +1,4 @@
-package com.quest.collections;
+package com.quest.collections.older;
 
 import java.util.ArrayList;
 import java.util.Iterator;

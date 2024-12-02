@@ -1,4 +1,4 @@
-package com.quest.collections;
+package com.quest.collections.older;
 
 public class Book {
     private String title;

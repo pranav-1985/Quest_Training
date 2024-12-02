@@ -1,4 +1,4 @@
-package com.quest.collections;
+package com.quest.collections.older;
 
 import java.util.HashMap;
 import java.util.Map;

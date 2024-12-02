@@ -1,8 +1,7 @@
-package com.quest.collections;
+package com.quest.collections.older;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.Random;
 import java.util.TreeSet;
 
 public class CollectionTest {
