@@ -7,8 +7,8 @@ public class GroupbyFrequency {
         List<Integer> list = new ArrayList<Integer>();
         list.add(1);
         list.add(1);
-        list.add(3);
         list.add(2);
+        list.add(3);
         list.add(2);
         list.add(3);
         Map<Integer, List<Integer>> map = new TreeMap<>(groupByFrequency(list));
@@ -38,6 +38,7 @@ public class GroupbyFrequency {
 
             if (!freqMap.containsKey(frequency)) {
                 List<Integer> list1 = new ArrayList<>();
+                list1.add(number);
                 freqMap.put(frequency, list1);
             } else {
                 freqMap.get(frequency).add(number);
