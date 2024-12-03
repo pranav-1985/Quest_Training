@@ -33,16 +33,13 @@ public class GroupbyFrequency {
         Map<Integer, List<Integer>> frequencyMap = new TreeMap<>();
 
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-
-            int number = entry.getKey();
-            int frequency = entry.getValue();
-
-            if (!frequencyMap.containsKey(frequency)) {//checks if frequency is already there if not puts frequency and a new arraylist into the map
+            
+            if (!frequencyMap.containsKey(entry.getValue())) {//checks if frequency is already there if not puts frequency and a new arraylist into the map
                 List<Integer> list1 = new ArrayList<>();
-                list1.add(number);
-                frequencyMap.put(frequency, list1);
+                list1.add(entry.getKey());
+                frequencyMap.put(entry.getValue(), list1);
             } else {
-                frequencyMap.get(frequency).add(number);//if frequency present just adds the number to the value list
+                frequencyMap.get(entry.getValue()).add(entry.getKey());//if frequency present just adds the number to the value list
             }
         }
 
