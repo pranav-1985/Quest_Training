@@ -5,6 +5,8 @@ public interface UserManager {
 
     void createPlaylist(Playlist playlistName);
 
+    void addToplaylist(MusicTrack music, Playlist playlistName);
+
     void deletePlaylist(String playlistName);
 
     Playlist getPlaylist(String playlistName);

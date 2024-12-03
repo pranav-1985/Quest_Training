@@ -36,7 +36,7 @@ public class Playlist implements MusicManager {
 
     @Override
     public void addTrack(MusicTrack track, Playlist playlist) {
-        if (findDuplicates(track, playlist)) {
+        if (findDuplicates(track)) {
             throw new DuplicateException("Track with ID " + track.getTrackId() + " already exists in the playlist.");
         }
         playlist.getTracks().add(track);
@@ -53,8 +53,8 @@ public class Playlist implements MusicManager {
     }
 
     @Override
-    public boolean findDuplicates(MusicTrack track, Playlist playlist) {
-        for (MusicTrack existingTrack : playlist.getTracks()) {
+    public boolean findDuplicates(MusicTrack track) {
+        for (MusicTrack existingTrack : getTracks()) {
             if (existingTrack.equals(track)) {
                 return true; // Duplicate found
             }

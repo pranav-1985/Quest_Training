@@ -30,12 +30,17 @@ public class User implements UserManager {
 
     @Override
     public void createPlaylist(Playlist playlistName) {
-        if (userPlaylists.containsKey(playlistName)) {
+        if (userPlaylists.containsKey(playlistName.getPlaylistName())) {
             throw new DuplicateException("Playlist already exists.");
         } else {
             userPlaylists.put(playlistName.getPlaylistName(), playlistName);
             System.out.println("Playlist '" + playlistName + "' created.");
         }
+    }
+
+    @Override
+    public void addToplaylist(MusicTrack music, Playlist playlist) {
+        playlist.addTrack(music, playlist);
     }
 
     @Override

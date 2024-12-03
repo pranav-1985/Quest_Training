@@ -51,7 +51,7 @@ public class Main {
                         if (user != null) {
                             System.out.println("Enter playlist name: ");
                             String playlistName = scanner.next();
-                            Playlist playlist = user.getPlaylist(playlistName);
+                            Playlist playlist = new Playlist(playlistName);
                             user.createPlaylist(playlist);
                             System.out.println("Playlist '" + playlistName + "' created.");
                         } else {
@@ -75,20 +75,19 @@ public class Main {
                             if (playlist != null) {
                                 System.out.println("Enter track id: ");
                                 int trackId = scanner.nextInt();
+                                scanner.nextLine();
                                 System.out.println("Enter track name: ");
-                                String trackName = scanner.next();
+                                String trackName = scanner.nextLine();
                                 System.out.println("Enter Track artist");
-                                String trackAuthor = scanner.next();
+                                String trackAuthor = scanner.nextLine();
                                 System.out.println("Enter track duration: ");
-                                int duration = scanner.nextInt();
+                                double duration = scanner.nextDouble();
                                 MusicTrack track = new MusicTrack(trackId, trackName, trackAuthor, duration);
-                                Playlist newplay = new Playlist(trackName);
-                                newplay.addTrack(track, newplay);
                                 try {
-                                    user.createPlaylist(newplay);
+                                    user.addToplaylist(track, playlist);
                                     System.out.println("Track '" + trackName + "' added to playlist.");
-                                } catch (DuplicateException | InputMismatchException | IllegalArgumentException e) {
-                                    System.out.println("Error: " + e.getMessage());
+                                } catch (IllegalArgumentException | InputMismatchException | DuplicateException e) {
+                                    e.printStackTrace();
                                 }
                             } else {
                                 System.out.println("Playlist not found.");
@@ -99,8 +98,8 @@ public class Main {
                     } catch (InputMismatchException e) {
                         System.out.println("Invalid input. Please enter a valid number for duration.");
                         scanner.next();  // Clear invalid input
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
+                    } catch (IllegalArgumentException | DuplicateException e) {
+                        e.printStackTrace();
                     }
                     break;
 
@@ -121,8 +120,8 @@ public class Main {
                                 try {
                                     playlist.removeTrack(music, playlist);
                                     System.out.println("Track '" + trackName + "' removed from playlist.");
-                                } catch (IllegalArgumentException e) {
-                                    System.out.println("Error: " + e.getMessage());
+                                } catch (IllegalArgumentException | InputMismatchException | DuplicateException e) {
+                                    e.printStackTrace();
                                 }
                             } else {
                                 System.out.println("Playlist not found.");
@@ -130,8 +129,8 @@ public class Main {
                         } else {
                             System.out.println("User not found.");
                         }
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
+                    } catch (IllegalArgumentException | InputMismatchException | DuplicateException e) {
+                        e.printStackTrace();
                     }
                     break;
 
@@ -153,8 +152,8 @@ public class Main {
                         } else {
                             System.out.println("User not found.");
                         }
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
+                    } catch (IllegalArgumentException | InputMismatchException | DuplicateException e) {
+                        e.printStackTrace();
                     }
                     break;
 
@@ -176,8 +175,8 @@ public class Main {
                         } else {
                             System.out.println("User not found.");
                         }
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
+                    } catch (IllegalArgumentException | InputMismatchException | DuplicateException e) {
+                        e.printStackTrace();
                     }
                     break;
 

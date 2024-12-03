@@ -9,7 +9,7 @@ public interface MusicManager {
 
     void removeTrack(MusicTrack track, Playlist playlist);
 
-    boolean findDuplicates(MusicTrack track, Playlist playlist);
+    boolean findDuplicates(MusicTrack track);
 
     MusicTrack searchTrack(MusicTrack track, Playlist playlist);
 
