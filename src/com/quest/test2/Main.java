@@ -1,6 +1,5 @@
 package com.quest.test2;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,8 +19,7 @@ public class Main {
                     "\n6. Sort Tracks" +
                     "\n7. Shuffle Tracks" +
                     "\n8. Merge Playlists" +
-                    "\n9. Test Track Equals" +
-                    "\n10. Exit");
+                    "\n9. Exit");
 
             int choice = 0;
             try {
@@ -53,7 +51,8 @@ public class Main {
                         if (user != null) {
                             System.out.println("Enter playlist name: ");
                             String playlistName = scanner.next();
-                            user.createPlaylist(playlistName);
+                            Playlist playlist = user.getPlaylist(playlistName);
+                            user.createPlaylist(playlist);
                             System.out.println("Playlist '" + playlistName + "' created.");
                         } else {
                             System.out.println("User not found.");
@@ -118,9 +117,9 @@ public class Main {
                             if (playlist != null) {
                                 System.out.println("Enter track name: ");
                                 String trackName = scanner.next();
-                                ArrayList<MusicTrack> playlists=new ArrayList<>(playlist.getTracks());
+                                MusicTrack music = playlist.searchTrackbyName(trackName, playlist);
                                 try {
-                                    playlists.removeTrack(, playlist);
+                                    playlist.removeTrack(music, playlist);
                                     System.out.println("Track '" + trackName + "' removed from playlist.");
                                 } catch (IllegalArgumentException e) {
                                     System.out.println("Error: " + e.getMessage());
@@ -141,13 +140,13 @@ public class Main {
                     try {
                         System.out.println("Enter username: ");
                         String userName = scanner.next();
-                        User user = userManager.findUser(userName);
+                        User user = userManager.getUser(userName);
                         if (user != null) {
                             System.out.println("Enter playlist name: ");
                             String playlistName = scanner.next();
                             Playlist playlist = user.getPlaylist(playlistName);
                             if (playlist != null) {
-                                user.displayTracksInPlaylist(playlist);
+                                System.out.println(playlist);
                             } else {
                                 System.out.println("Playlist not found.");
                             }
@@ -164,13 +163,13 @@ public class Main {
                     try {
                         System.out.println("Enter username: ");
                         String userName = scanner.next();
-                        User user = userManager.findUser(userName);
+                        User user = userManager.getUser(userName);
                         if (user != null) {
                             System.out.println("Enter playlist name: ");
                             String playlistName = scanner.next();
                             Playlist playlist = user.getPlaylist(playlistName);
                             if (playlist != null) {
-                                user.sortTracksInPlaylist(playlist);
+                                playlist.sortTracks(playlist);
                             } else {
                                 System.out.println("Playlist not found.");
                             }
@@ -187,13 +186,13 @@ public class Main {
                     try {
                         System.out.println("Enter username: ");
                         String userName = scanner.next();
-                        User user = userManager.findUser(userName);
+                        User user = userManager.getUser(userName);
                         if (user != null) {
                             System.out.println("Enter playlist name: ");
                             String playlistName = scanner.next();
                             Playlist playlist = user.getPlaylist(playlistName);
                             if (playlist != null) {
-                                user.shuffleTracksInPlaylist(playlist);
+                                playlist.shuffleTracks(playlist);
                             } else {
                                 System.out.println("Playlist not found.");
                             }
@@ -210,9 +209,9 @@ public class Main {
                     try {
                         System.out.println("Enter username: ");
                         String userName = scanner.next();
-                        User user = userManager.findUser(userName);
+                        User user = userManager.getUser(userName);
                         if (user != null) {
-                            user.mergePlaylists(user);  // Merge playlists for the same user
+                            user.mergePlaylist(user);
                         } else {
                             System.out.println("User not found.");
                         }
@@ -222,58 +221,6 @@ public class Main {
                     break;
 
                 case 9:
-                    try {
-                        System.out.println("Enter username: ");
-                        String userName = scanner.next();
-                        User user = userManager.findUser(userName);
-                        if (user != null) {
-                            System.out.println("Enter playlist name: ");
-                            String playlistName = scanner.next();
-                            Playlist playlist = user.getPlaylist(playlistName);
-                            if (playlist != null) {
-                                System.out.println("Enter the name of the first track to compare: ");
-                                String trackName1 = scanner.next();
-                                MusicTrack track1 = null;
-                                for (MusicTrack track : playlist.getTracks()) {
-                                    if (track.getTrackName().equals(trackName1)) {
-                                        track1 = track;
-                                        break;
-                                    }
-                                }
-                                if (track1 != null) {
-                                    System.out.println("Enter the name of the second track to compare: ");
-                                    String trackName2 = scanner.next();
-                                    MusicTrack track2 = null;
-                                    for (MusicTrack track : playlist.getTracks()) {
-                                        if (track.getTrackName().equals(trackName2)) {
-                                            track2 = track;
-                                            break;
-                                        }
-                                    }
-                                    if (track2 != null) {
-                                        if (track1.equals(track2)) {
-                                            System.out.println("The tracks are equal.");
-                                        } else {
-                                            System.out.println("The tracks are not equal.");
-                                        }
-                                    } else {
-                                        System.out.println("Second track not found.");
-                                    }
-                                } else {
-                                    System.out.println("First track not found.");
-                                }
-                            } else {
-                                System.out.println("Playlist not found.");
-                            }
-                        } else {
-                            System.out.println("User not found.");
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }
-                    break;
-
-                case 10:
                     // Exit
                     System.out.println("Exiting the program...");
                     scanner.close();

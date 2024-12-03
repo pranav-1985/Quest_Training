@@ -67,7 +67,7 @@ public class Playlist implements MusicManager {
     public MusicTrack searchTrack(MusicTrack track, Playlist playlist) {
         for (MusicTrack existingTrack : playlist.getTracks()) {
             if (existingTrack.equals(track)) {
-                return (MusicTrack) existingTrack; // Return the found track
+                return existingTrack; // Return the found track
             }
         }
         return null;
@@ -98,12 +98,12 @@ public class Playlist implements MusicManager {
         switch (choice) {
             case 1:
                 // Sort by duration
-                playlist.getTracks().sort(TrackComparator.sortByDuration());
+                playlist.getTracks().sort(new SortByDuration());
                 System.out.println("Tracks sorted by Duration.");
                 break;
             case 2:
                 // Sort by title
-                playlist.getTracks().sort(TrackComparator.sortByTitle());
+                playlist.getTracks().sort(new SortByTitle());
                 System.out.println("Tracks sorted by Title.");
                 break;
             default:
@@ -129,6 +129,16 @@ public class Playlist implements MusicManager {
 
         System.out.println("Tracks shuffled.");
         displayAllTracks(playlist);
+
+    }
+
+    public MusicTrack searchTrackbyName(String Trackname, Playlist playlist) {
+        for (MusicTrack track : playlist.getTracks()) {
+            if (track.getTrackName().equals(Trackname)) {
+                return track;
+            }
+        }
+        return null;
 
     }
 
