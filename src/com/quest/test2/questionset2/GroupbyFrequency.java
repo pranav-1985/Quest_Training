@@ -5,12 +5,13 @@ import java.util.*;
 public class GroupbyFrequency {
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<Integer>();
-        list.add(1);
+        list.add(3);
         list.add(1);
         list.add(2);
-        list.add(3);
+        list.add(1);
         list.add(2);
-        list.add(3);
+        list.add(1);
+        list.add(2);
         Map<Integer, List<Integer>> map = new TreeMap<>(groupByFrequency(list));
         for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());
@@ -20,31 +21,31 @@ public class GroupbyFrequency {
     public static Map<Integer, List<Integer>> groupByFrequency(List<Integer> list) {
 
         Map<Integer, Integer> map = new TreeMap<>();
-        for (int num : list) {
+
+        for (int num : list) {// to map numbers and their frequency <number,frequency>
             if (!map.containsKey(num)) {
-                map.put(num, 1);
+                map.put(num, 1);//if num not in map put num and frequency as 1
             } else {
-                map.put(num, map.get(num) + 1);
+                map.put(num, map.get(num) + 1); //add 1 to frequency everytime if reappears
             }
         }
 
-        Map<Integer, List<Integer>> freqMap = new TreeMap<>();
+        Map<Integer, List<Integer>> frequencyMap = new TreeMap<>();
 
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
 
             int number = entry.getKey();
             int frequency = entry.getValue();
 
-
-            if (!freqMap.containsKey(frequency)) {
+            if (!frequencyMap.containsKey(frequency)) {//checks if frequency is already there if not puts frequency and a new arraylist into the map
                 List<Integer> list1 = new ArrayList<>();
                 list1.add(number);
-                freqMap.put(frequency, list1);
+                frequencyMap.put(frequency, list1);
             } else {
-                freqMap.get(frequency).add(number);
+                frequencyMap.get(frequency).add(number);//if frequency present just adds the number to the value list
             }
         }
 
-        return freqMap;
+        return frequencyMap;
     }
 }
