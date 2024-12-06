@@ -9,6 +9,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         UserManagement userManager = new UserManagement();
 
+        DataSetup.setupSampleData(userManager);
+
         while (true) {
             System.out.println("\nChoose an action:" +
                     "\n1. Create User" +
@@ -145,7 +147,10 @@ public class Main {
                             String playlistName = scanner.next();
                             Playlist playlist = user.getPlaylist(playlistName);
                             if (playlist != null) {
-                                System.out.println(playlist);
+                                for (MusicTrack track : playlist.getTracks()) {
+                                    System.out.println(playlist.getTracks().size());
+                                    System.out.println(track);
+                                }
                             } else {
                                 System.out.println("Playlist not found.");
                             }

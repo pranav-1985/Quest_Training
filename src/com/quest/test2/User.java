@@ -86,20 +86,34 @@ public class User implements UserManager {
         Playlist playlist1 = user.getUserPlaylists().get(playlistName1);
         Playlist playlist2 = user.getUserPlaylists().get(playlistName2);
 
-
         if (playlist1 == null || playlist2 == null) {
             System.out.println("One or both of the playlists do not exist.");
             return null;
         }
 
+        // Debug: Print track count before merging
+        System.out.println("Tracks in playlist 1 before merging: " + playlist1.getTracks().size());
+        System.out.println("Tracks in playlist 2 before merging: " + playlist2.getTracks().size());
+
+        // Create the merged playlist with a name combining both playlist names
         String mergedPlaylistName = playlistName1 + " & " + playlistName2 + "(Merged)";
         Playlist mergedPlaylist = new Playlist(mergedPlaylistName);
 
+        // Add tracks from playlist 1
+        System.out.println("Tracks from playlist 1 being added:");
+        for (MusicTrack track : playlist1.getTracks()) {
+            System.out.println("Adding: " + track.getTrackName());
+            mergedPlaylist.addTrack(track, mergedPlaylist);
+        }
 
-        mergedPlaylist.getTracks().addAll(playlist1.getTracks());
-        mergedPlaylist.getTracks().addAll(playlist2.getTracks());
+        // Add tracks from playlist 2
+        System.out.println("Tracks from playlist 2 being added:");
+        for (MusicTrack track : playlist2.getTracks()) {
+            System.out.println("Adding: " + track.getTrackName());
+            mergedPlaylist.addTrack(track, mergedPlaylist);
+        }
 
-
+        // Add the merged playlist to the user's playlists
         user.getUserPlaylists().put(mergedPlaylistName, mergedPlaylist);
 
         System.out.println("Playlists merged successfully! New playlist created: " + mergedPlaylistName);
