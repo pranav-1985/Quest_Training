@@ -10,6 +10,8 @@ public class Main {
         VehicleInventoryManagement vehicleInventory = new VehicleInventoryManagement();
         String filename = "customerData.ser";
 
+//        initializeData(vehicleInventory, salesManagement);
+
         // Load the previously serialized data
         Map<Customer, Set<Vehicle>> customerData = salesManagement.DeserializeCustomerData(filename);
         if (customerData != null) {
@@ -162,5 +164,12 @@ public class Main {
                 scanner.nextLine(); // Consume invalid input
             }
         }
+    }
+
+    private static void initializeData(VehicleInventoryManagement vehicleInventory, SalesManagement salesManagement) {
+        DataPopulator.populateVehicleInventory(vehicleInventory);
+        DataPopulator.populateCustomerData(salesManagement, vehicleInventory);
+
+        System.out.println("Initial data loaded successfully!");
     }
 }
