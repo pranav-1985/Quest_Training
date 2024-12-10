@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class StreamExample {
     public static void main(String[] args) {
 
-        List<String> nameList = Arrays.asList("nikki", "rahul1", "1ajay", "sheril");
+        List<String> nameList = Arrays.asList("nikki", "rahul1", "1ajay", "sharon");
 
         Stream<String> stream = nameList.stream();
 
